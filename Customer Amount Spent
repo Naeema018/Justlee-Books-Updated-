@@ -1,0 +1,16 @@
+SELECT TO_CHAR(SUM(paideach*.05),'$999.99')"Uncollectible"
+FROM orderitems
+WHERE paideach > (SELECT AVG(paideach) from orderitems);
+
+/* This script is pulling the amount a customer paid that is larger than the average customer pay per order, and multiplying that by 5% */
+                           
+SELECT TO_CHAR(SUM(paideach*.015),'$999.99')"SURCHARGE PER ORDER" ,paideach,order#
+FROM orderitems
+group by paideach,order#
+ORDER by order#; 
+
+/* THIS SCRIPT GIVES THE TOTAL AMOUNT OF SURCHARGE PER ORDER*/
+
+
+SELECT TO_CHAR(SUM(paideach*.015),'$999.99')"TOTAL SURCHARGE"
+FROM orderitems;
